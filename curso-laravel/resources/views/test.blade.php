@@ -1,3 +1,3 @@
 <div class="container">
-    <h1>{{ $name ?? '' }}</h1>
+    <h1>{{ $name ?? 'Sin Titulo' }}</h1>
 </div>
