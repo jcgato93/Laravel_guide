@@ -18,9 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return [
-        'Hello',
-        'World!!',
-        'data' => 'dato1'
-    ];
+    $name = 'Juan';
+
+    return view('test')->with('name',$name);
 });
