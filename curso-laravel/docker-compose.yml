@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  laravel:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./public/:/var/www/html
+
