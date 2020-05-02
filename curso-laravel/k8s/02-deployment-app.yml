@@ -5,7 +5,7 @@ metadata:
   labels:
     app: laravel-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: laravel-app
@@ -38,7 +38,7 @@ spec:
     app: laravel-app
   ports:
     - protocol: TCP
-      port: 8000
+      port: 8001
       targetPort: 80
   type: LoadBalancer
 
@@ -54,5 +54,5 @@ spec:
   type: ClusterIP
   ports:
   - protocol: TCP
-    port: 8000
+    port: 8002
     targetPort: 80

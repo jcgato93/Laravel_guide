@@ -10,7 +10,7 @@
 
     - Apply namespace file
 
-            $ kubectl apply -f 00-namespace.yml
+            $ kubectl apply -f 01-name-space.yml
 
 
 ### Deploy App
@@ -18,4 +18,4 @@
 1. Apply deployment with a LoadBalancer and ClusterIP services in the
 specific namespace
 
-            $ kubectl -n production apply -f 01-deployment-app.yml    
+            $ kubectl -n production apply -f 02-deployment-app.yml    
