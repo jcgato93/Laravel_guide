@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end
+  labels:
+    app: laravel-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: laravel-app
+  template:
+    metadata:
+      labels:
+        app: laravel-app
+    spec:
+      containers:
+      - name: back-end
+        image: camilocastillo/laravel-app:v1.0.0
+        imagePullPolicy: Always #IfNotPresent
+        ports:
+        - containerPort: 80
+      #   volumeMounts:
+      #   - name: custom-volume
+      #     mountPath: /app/wwwroot/Upload
+      # volumes:
+      #   - name: custom-volume
+      #     persistentVolumeClaim:
+      #       claimName: sqlserver-pv-claim
+---
+# LoadBalancer external communication
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-end-lb
+spec:
+  selector:
+    app: laravel-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 80
+  type: LoadBalancer
+
+---
+# ClusterIP internal communication
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-end-clusterip
+spec:
+  selector:
+    app: laravel-app
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 80
